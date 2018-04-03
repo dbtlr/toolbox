@@ -1,6 +1,6 @@
+import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import Document from './src/Document';
-import CorsTester from "./src/containers/CorsTester";
 
 export default {
   siteRoot: process.env.SITE_ROOT || 'http://localhost:3000',
