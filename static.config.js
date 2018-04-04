@@ -14,8 +14,8 @@ export default {
         component: 'src/containers/Home',
       },
       {
-        path: '/cors-tester',
-        component: 'src/containers/CorsTester',
+        path: '/api-tester',
+        component: 'src/containers/ApiTester',
       },
       {
         is404: true,

@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 
-const BaseIcon = styled.span``;
+const BaseIcon = styled.span`
+  display: inline-block;
+`;
 
 export default class Icon extends Component {
   static propTypes = {
@@ -18,7 +20,7 @@ export default class Icon extends Component {
     const { className } = this.props;
 
     return (
-      <BaseIcon>
+      <BaseIcon className="icon">
         <i className={ className } />
       </BaseIcon>
     );

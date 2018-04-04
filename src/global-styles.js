@@ -7,11 +7,13 @@ injectGlobal`
 :root {
   --background-color: #FFFFFA;
   --text-color: #6a7987;
+  --light-color: #CFCFCF;
   --menu-background-color: #6a7987cc;
   --primary-color: #456990;
   --secondary-color: #FF6700;
   --light-primary-color: #9DD8CE;
   --light-secondary-color: #E9B872;
+  --error-color: #A40E4C;
 }
 
 html {

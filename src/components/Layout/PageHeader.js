@@ -130,7 +130,7 @@ class PageHeader extends Component {
           <BarsIcon className="fa-2x" />
         </MenuToggle>
         <Menu className={ menuOpen ? 'opened' : 'closed' }>
-          <Link to="/cors-tester">CORS Tester</Link>
+          <Link to="/api-tester">API Tester</Link>
         </Menu>
       </Header>
     );

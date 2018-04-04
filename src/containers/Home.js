@@ -18,7 +18,7 @@ export default class Home extends Component {
         <WrenchIcon className="fa-4x" />
         <Title>Toolbox</Title>
         <List>
-          <li><Link to="/cors-tester">CORS Tester</Link></li>
+          <li><Link to="/api-tester">API Tester</Link></li>
         </List>
       </Layout>
     );
