@@ -95,15 +95,17 @@ const ActionGroup = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   color: var(--background-color);
   background-color: var(--primary-color);
   cursor: pointer;
   outline: 0;
+  border: none;
   
   &:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--light-primary-color);
   }
 `;
 

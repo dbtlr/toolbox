@@ -6,14 +6,15 @@ injectGlobal`
 
 :root {
   --background-color: #FFFFFA;
-  --text-color: #6a7987;
+  --text-color: #6A7987;
   --light-color: #CFCFCF;
-  --menu-background-color: #6a7987cc;
-  --primary-color: #456990;
-  --secondary-color: #FF6700;
-  --light-primary-color: #9DD8CE;
-  --light-secondary-color: #E9B872;
-  --error-color: #A40E4C;
+  --menu-background-color: #6A7987CC;
+  --primary-color: #058ED9;
+  --light-primary-color: #5BC0EB;
+  --secondary-color: #FB5607;
+  --light-secondary-color: #FAA300;
+  --error-color: #E63946;
+  --success-color: #5FAD56;
 }
 
 html {
@@ -67,7 +68,7 @@ a {
   color: var(--primary-color);
   
   &:hover {
-    color: var(--secondary-color);
+    color: var(--light-primary-color);
   }
 }
 
