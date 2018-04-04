@@ -26,6 +26,7 @@ export default class Layout extends Component {
       <Fragment>
         <Head>
           <title>{ pageTitle }</title>
+          <link rel="icon" type="image/png" href="/favicon.png" />
         </Head>
         <PageHeader />
         <Container className={ className }>
