@@ -1,9 +1,3 @@
-import Container from './Container';
-import Title from './Title';
-import Article from './Article';
-
-export {
-  Container,
-  Title,
-  Article,
-}
+export { default as Container } from './Container';
+export { default as Title } from './Title';
+export { default as Article } from './Article';

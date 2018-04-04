@@ -1,13 +1,4 @@
-import HomeIcon from './HomeIcon';
-import BlindIcon from './BlindIcon';
-import BarsIcon from './BarsIcon';
-import WrenchIcon from "./WrenchIcon";
-import SpinnerIcon from "./SpinnerIcon";
-
-export {
-  HomeIcon,
-  BlindIcon,
-  BarsIcon,
-  WrenchIcon,
-  SpinnerIcon,
-}
+export { default as BlindIcon } from './BlindIcon';
+export { default as BarsIcon } from './BarsIcon';
+export { default as WrenchIcon } from './WrenchIcon';
+export { default as SpinnerIcon } from './SpinnerIcon';
