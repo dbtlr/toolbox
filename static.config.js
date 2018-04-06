@@ -1,6 +1,7 @@
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import Document from './src/Document';
+import GravatarViewer from "./src/containers/GravatarViewer";
 
 export default {
   siteRoot: process.env.SITE_ROOT || 'http://localhost:3000',
@@ -18,6 +19,10 @@ export default {
       {
         path: '/api-tester',
         component: 'src/containers/ApiTester',
+      },
+      {
+        path: '/gravatar-viewer',
+        component: 'src/containers/GravatarViewer',
       },
       {
         is404: true,

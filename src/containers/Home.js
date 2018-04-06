@@ -19,6 +19,7 @@ export default class Home extends Component {
         <Title>Toolbox</Title>
         <List>
           <li><Link to="/api-tester">API Tester</Link></li>
+          <li><Link to="/gravatar-viewer">Gravatar Viewer</Link></li>
         </List>
       </Layout>
     );

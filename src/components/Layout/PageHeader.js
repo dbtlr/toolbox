@@ -131,6 +131,7 @@ class PageHeader extends Component {
         </MenuToggle>
         <Menu className={ menuOpen ? 'opened' : 'closed' }>
           <Link to="/api-tester">API Tester</Link>
+          <Link to="/gravatar-viewer">Gravatar Viewer</Link>
         </Menu>
       </Header>
     );
