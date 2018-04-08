@@ -9,6 +9,15 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
+  
+  li {
+    margin: 0.5rem 0;
+    padding: 0;
+    
+    a {
+      text-decoration: none;
+    }
+  }
 `;
 
 export default class Home extends Component {

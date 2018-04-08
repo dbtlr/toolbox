@@ -14,7 +14,9 @@ injectGlobal`
   --secondary-color: #FB5607;
   --light-secondary-color: #FAA300;
   --error-color: #E63946;
+  --light-error-color: #DFBBB1;
   --success-color: #5FAD56;
+  --light-success-color: #DCEDB9;
 }
 
 html {

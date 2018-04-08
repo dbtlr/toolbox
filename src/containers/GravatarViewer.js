@@ -13,7 +13,11 @@ const Layout = styled(BaseLayout)`
 `;
 
 const Form = styled.form`
+  margin-top: 2rem;
+`;
 
+const Description = styled.p`
+  font-size: 1.5rem;
 `;
 
 const Title = styled(BaseTitle)`
@@ -27,29 +31,39 @@ const Input = styled.input`
   background: transparent;
   border: none;
   text-align: center;
+  padding: 1rem 2rem;
+  
+  :-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px transparent inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: #333;
+  }
+`;
+
+const ErrorBox = styled.section`
+  padding: 2rem;
+  margin: 0 auto;
+  border: 1px solid var(--light-color);
+  max-width: 500px;
 `;
 
 const Field = styled.div`
   margin-bottom: 2rem;
-  padding: 1rem 2rem;
   border: 1px solid var(--light-color);
   border-radius: 5px;
   
   &.errored {
-    background-color: var(--error-color);
+    background-color: var(--light-error-color);
     
     input {
       font-weight: 700;
-      color: white;
     }
   }
   
   &.success {
-    background-color: var(--success-color);
+    background-color: var(--light-success-color);
     
     input {
       font-weight: 700;
-      color: white;
     }
   }
 `;
@@ -75,6 +89,10 @@ const ErrorMessage = styled.div`
   margin-top: 2rem;
   color: var(--error-color);
   font-size: 1.5rem;
+  
+  p {
+    line-height: 2.25rem;
+  }
 `;
 
 const Headline = styled.div`
@@ -129,6 +147,7 @@ const Name = styled.h3`
   font-size: 1.75rem;
   margin: 0;
 `;
+
 const About = styled.p``;
 
 const ShowFull = styled.span`
@@ -159,23 +178,43 @@ export default class GravatarViewer extends Component {
     e.preventDefault();
 
     const form = new FormData(e.target);
-    const email = form.get('email');
-    const hash = md5(email);
+    const email = form.get('email').trim();
+    const hash = email ? md5(email) : null;
+
+    console.log(email);
 
     // Reset the state and mark as running
     this.setState({
       email,
       hash,
-      isSubmitted: true,
-      running: true,
+      isSubmitted: email !== '',
+      running: email !== '',
       isError: false,
       showFullProfile: false,
       data: null
     });
 
-    axios.get(`https://en.gravatar.com/${hash}.json`).then(response => {
+    if (email === '') {
+      return;
+    }
+
+    let cancel = () => {};
+
+    window.setTimeout(() => {
+      cancel();
+    }, 5000);
+
+    axios.get(
+      `https://en.gravatar.com/${hash}.json`,
+      {
+        cancelToken: new axios.CancelToken(c => {
+          console.log('cancel');
+          cancel = c;
+        })
+      }
+    ).then(response => {
       const { data } = response;
-      console.log(data);
+      cancel = () => {};
 
       this.setState({
         running: false,
@@ -185,11 +224,18 @@ export default class GravatarViewer extends Component {
 
     }).catch(error => {
       const data = {
-        message: 'An unknown error occurred whil querying Gravatar. Check your Internet and try again later.',
+        message: (
+          <Fragment>
+            <p>An unknown error occurred while querying Gravatar</p>
+            <p>Check your Internet and try again later</p>
+          </Fragment>
+        )
       };
 
       if (error.response.status === 404) {
-        data.message = 'It looks like that email is not associated to a Gravatar. Try another.';
+        data.message = (
+          <p>It looks like that email address is not associated to a Gravatar</p>
+        )
       }
 
       this.setState({
@@ -220,10 +266,10 @@ export default class GravatarViewer extends Component {
 
     if (isError) {
       return (
-        <Fragment>
+        <ErrorBox>
           <ErrorIcon className="fa-4x" />
           <ErrorMessage>{ data.message }</ErrorMessage>
-        </Fragment>
+        </ErrorBox>
       );
     }
 
@@ -250,7 +296,7 @@ export default class GravatarViewer extends Component {
       );
     }
 
-    return 'Enter an email to check...';
+    return null;
   }
 
   render() {
@@ -271,12 +317,13 @@ export default class GravatarViewer extends Component {
     return (
       <Layout pageTitle="Toolbox" className="centered">
         <Title>Gravatar Viewer</Title>
+        <Description>A tool to help find and view the Gravatar profile of a person based on their email address.</Description>
         <Form onSubmit={ this.onSubmit }>
           <Field className={className}>
             <Input
               type="email"
               name="email"
-              placeholder="Enter an email address"
+              placeholder="Enter the email address to check Gravatar..."
             />
           </Field>
         </Form>
