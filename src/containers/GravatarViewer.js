@@ -198,23 +198,8 @@ export default class GravatarViewer extends Component {
       return;
     }
 
-    let cancel = () => {};
-
-    window.setTimeout(() => {
-      cancel();
-    }, 5000);
-
-    axios.get(
-      `https://en.gravatar.com/${hash}.json`,
-      {
-        cancelToken: new axios.CancelToken(c => {
-          console.log('cancel');
-          cancel = c;
-        })
-      }
-    ).then(response => {
+    axios.get(`https://en.gravatar.com/${hash}.json`).then(response => {
       const { data } = response;
-      cancel = () => {};
 
       this.setState({
         running: false,
@@ -232,7 +217,7 @@ export default class GravatarViewer extends Component {
         )
       };
 
-      if (error.response.status === 404) {
+      if (error.response && error.response.status === 404) {
         data.message = (
           <p>It looks like that email address is not associated to a Gravatar</p>
         )
